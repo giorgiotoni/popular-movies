@@ -4,7 +4,7 @@
                 android:id="@+id/activity_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.android.popularmovies.HomeActivity">
+                tools:context="com.android.popularmovies.home.HomeActivity">
 
     <GridView android:id="@+id/home_grid_view"
               android:layout_width="match_parent"
