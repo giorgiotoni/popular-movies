@@ -7,5 +7,7 @@ public class Poster {
 
     String imageUrl;
 
-    String title;
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }

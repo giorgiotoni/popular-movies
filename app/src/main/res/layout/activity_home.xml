@@ -6,13 +6,7 @@
                 android:layout_height="match_parent"
                 tools:context="com.android.popularmovies.home.HomeActivity">
 
-    <GridView android:id="@+id/home_grid_view"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:columnWidth="100dp"
-              android:gravity="center"
-              android:horizontalSpacing="10dp"
-              android:numColumns="auto_fit"
-              android:stretchMode="spacingWidthUniform"
-              android:verticalSpacing="24dp"/>
+    <android.support.v7.widget.RecyclerView android:id="@+id/home_recycler"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"/>
 </RelativeLayout>
