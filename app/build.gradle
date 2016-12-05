@@ -20,7 +20,7 @@ android {
             buildConfigField "boolean", "LOG_MODE", "true"
             buildConfigField "String", "API_END_POINT", "\"http://api.themoviedb.org/\""
             buildConfigField "String", "IMAGES_END_POINT", "\"http://image.tmdb.org/t/p/w185/\""
-            buildConfigField "String", "SERVER_KEY", "\"******\""
+            buildConfigField "String", "SERVER_KEY", "\"********\""
         }
         release {
             debuggable false

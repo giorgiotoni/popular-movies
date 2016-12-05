@@ -6,7 +6,6 @@ import android.net.NetworkInfo;
 
 import com.android.popularmovies.BuildConfig;
 import com.android.popularmovies.api.Api;
-import com.android.popularmovies.common.Log;
 import com.android.popularmovies.common.presenter.Presenter;
 import com.android.popularmovies.common.presenter.PresenterView;
 import com.android.popularmovies.common.rx.EnhancedObserver;
@@ -58,7 +57,6 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
         subscription = fetchPopularMoviesList().subscribe(new EnhancedObserver<Posters>(subscription) {
             @Override
             public void next(Posters posters) {
-                Log.dump(posters); //TODO remove
                 if (posters.getPostersList() != null && !posters.getPostersList().isEmpty()) {
                     view.showMoviePosters(posters.getPostersList());
                 } else {

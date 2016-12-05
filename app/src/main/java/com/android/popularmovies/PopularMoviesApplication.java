@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.android.popularmovies.api.Api;
 import com.android.popularmovies.api.RestClient;
+import com.android.popularmovies.detail.DetailPresenter;
 import com.android.popularmovies.home.HomePresenter;
 import com.memoizrlabs.Shank;
 
@@ -22,5 +23,6 @@ public class PopularMoviesApplication extends Application {
 
         Shank.registerFactory(Context.class, this::getApplicationContext);
         Shank.registerFactory(HomePresenter.class, HomePresenter::new);
+        Shank.registerFactory(DetailPresenter.class, DetailPresenter::new);
     }
 }
