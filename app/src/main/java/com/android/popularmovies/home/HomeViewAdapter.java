@@ -3,9 +3,11 @@ package com.android.popularmovies.home;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.popularmovies.common.BaseAdapter;
-import com.android.popularmovies.common.ConcreteViewHolder;
+import com.android.popularmovies.common.recycler.BaseAdapter;
+import com.android.popularmovies.common.recycler.ConcreteViewHolder;
 import com.android.popularmovies.model.Poster;
+
+import java.util.List;
 
 /**
  * Created by Giorgio on 30/11/16.
@@ -13,10 +15,12 @@ import com.android.popularmovies.model.Poster;
 
 public class HomeViewAdapter extends BaseAdapter<ConcreteViewHolder<Poster>, Poster> {
 
-    private final int itemCount;
+    private int itemCount;
 
-    public HomeViewAdapter(int itemCount) {
-        this.itemCount = itemCount;
+    @Override
+    public void setItems(List<Poster> items) {
+        itemCount = items.size();
+        super.setItems(items);
     }
 
     @Override

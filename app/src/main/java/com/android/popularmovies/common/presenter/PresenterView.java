@@ -1,4 +1,4 @@
-package com.android.popularmovies.common;
+package com.android.popularmovies.common.presenter;
 
 /**
  * Created by Giorgio on 27/11/16.

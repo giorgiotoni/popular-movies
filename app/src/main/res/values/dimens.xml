@@ -3,4 +3,6 @@
     <dimen name="keyline_half">8dp</dimen>
     <dimen name="keyline_large">32dp</dimen>
     <dimen name="keyline_content">72dp</dimen>
+
+    <dimen name="poster_height">300dp</dimen>
 </resources>

@@ -1,13 +1,13 @@
 package com.android.popularmovies.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.android.popularmovies.R;
-import com.android.popularmovies.model.Poster;
 import com.android.popularmovies.common.Util;
+import com.android.popularmovies.common.activity.BaseActivity;
+import com.android.popularmovies.model.Poster;
 import com.memoizrlabs.Shank;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements HomePresenter.View {
+public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
     HomePresenter homePresenter = Shank.provideSingleton(HomePresenter.class);
 
@@ -54,9 +54,19 @@ public class HomeActivity extends AppCompatActivity implements HomePresenter.Vie
     }
 
     @Override
-    public void onMoviePostersLoaded(List<Poster> posters) {
-        HomeViewAdapter adapter = new HomeViewAdapter(posters.size());
+    public void showMoviePosters(List<Poster> posters) {
+        HomeViewAdapter adapter = new HomeViewAdapter();
         adapter.setItems(posters);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showMoviePostersLoadingError() {
+        showMessage(R.string.error_loading_posters);
+    }
+
+    @Override
+    public void showNetworkError() {
+        showMessage(R.string.error_network);
     }
 }

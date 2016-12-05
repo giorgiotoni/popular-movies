@@ -1,7 +1,9 @@
-package com.android.popularmovies.common;
+package com.android.popularmovies.common.recycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.android.popularmovies.common.presenter.RecyclerItem;
 
 /**
  * Created by Giorgio on 30/11/16.

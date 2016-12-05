@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="error_loading_posters">Something went wrong! Please try again.</string>
+    <string name="error_network">No connection found. Please check your connection and try again.</string>
 </resources>
