@@ -3,4 +3,6 @@
     <string name="error_loading_posters">Something went wrong! Please try again.</string>
     <string name="error_network">No connection found. Please check your connection and try again.</string>
     <string name="movie_detail">MovieDetail</string>
+    <string name="mark_as_favorite">mark as favorite</string>
+    <string name="vote_everage">%s/10</string>
 </resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tool="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="120dp"
+                 android:background="@color/colorAccent"
+                 android:elevation="4dp">
+        <TextView android:id="@+id/detail_title"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_vertical"
+                  android:ellipsize="end"
+                  android:maxLines="2"
+                  android:paddingLeft="@dimen/keyline"
+                  android:paddingStart="@dimen/keyline"
+                  android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                  tool:text="Chappie"/>
+    </FrameLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/keyline_half">
+        <ImageView android:id="@+id/detail_poster"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/detail_poster"
+                        android:layout_toRightOf="@id/detail_poster">
+            <TextView android:id="@+id/detail_year"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      tool:text="2015"/>
+            <TextView android:id="@+id/detail_duration"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/detail_year"
+                      tool:text="120min"/>
+            <TextView android:id="@+id/detail_vote"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/detail_duration"
+                      tool:text="8.5/10"/>
+            <Button android:id="@+id/detail_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_vote"
+                    android:text="@string/mark_as_favorite"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView android:id="@+id/detail_description"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+</LinearLayout>

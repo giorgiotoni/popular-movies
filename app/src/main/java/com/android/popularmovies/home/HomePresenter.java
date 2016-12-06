@@ -1,10 +1,7 @@
 package com.android.popularmovies.home;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import com.android.popularmovies.BuildConfig;
+import com.android.popularmovies.NetworkService;
 import com.android.popularmovies.api.Api;
 import com.android.popularmovies.common.presenter.Presenter;
 import com.android.popularmovies.common.presenter.PresenterView;
@@ -26,7 +23,7 @@ import rx.schedulers.Schedulers;
 
 public class HomePresenter implements Presenter<HomePresenter.View> {
 
-    private Context applicationContext = Shank.provideSingleton(Context.class);
+    private NetworkService networkService = Shank.provideSingleton(NetworkService.class);
     private Api apiClient = Shank.provideNew(Api.class);
     private View view;
     private Subscription subscription;
@@ -50,7 +47,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     }
 
     private void loadPopularMovies() {
-        if (!isOnline()) {
+        if (!networkService.isOnline()) {
             view.showNetworkError();
             return;
         }
@@ -75,12 +72,6 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     private Observable<Posters> fetchPopularMoviesList() {
         return apiClient.rxPopularMovies(BuildConfig.SERVER_KEY).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    public boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
     public interface View extends PresenterView {
