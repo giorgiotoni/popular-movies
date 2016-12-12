@@ -26,7 +26,9 @@
                     android:layout_marginTop="@dimen/keyline_half">
         <ImageView android:id="@+id/detail_poster"
                    android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"/>
+                   android:layout_height="wrap_content"
+                   android:paddingLeft="@dimen/keyline"
+                   android:paddingRight="@dimen/keyline"/>
 
         <RelativeLayout android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -35,16 +37,14 @@
             <TextView android:id="@+id/detail_year"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
+                      android:textColor="@color/colorPrimary"
+                      android:textAppearance="@style/TextAppearance.AppCompat.Large"
                       tool:text="2015"/>
-            <TextView android:id="@+id/detail_duration"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_below="@id/detail_year"
-                      tool:text="120min"/>
             <TextView android:id="@+id/detail_vote"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_below="@id/detail_duration"
+                      android:layout_below="@id/detail_year"
+                      android:textColor="@color/colorPrimary"
                       tool:text="8.5/10"/>
             <Button android:id="@+id/detail_favorite"
                     android:layout_width="wrap_content"
@@ -56,5 +56,9 @@
 
     <TextView android:id="@+id/detail_description"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/keyline"
+              android:paddingLeft="@dimen/keyline_half"
+              android:paddingRight="@dimen/keyline_half"
+              android:textColor="@color/colorPrimary"/>
 </LinearLayout>

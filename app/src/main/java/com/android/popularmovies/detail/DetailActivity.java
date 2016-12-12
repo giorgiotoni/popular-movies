@@ -14,6 +14,11 @@ import com.android.popularmovies.model.Poster;
 import com.memoizrlabs.Shank;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,9 +37,6 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
 
     @BindView(R.id.detail_year)
     TextView year;
-
-    @BindView(R.id.detail_duration)
-    TextView duration;
 
     @BindView(R.id.detail_vote)
     TextView vote;
@@ -63,11 +65,22 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
 
     private void initUI() {
         title.setText(poster.getTitle());
-        year.setText(poster.getReleaseDate());
-        duration.setText(poster.getReleaseDate());
         vote.setText(getString(R.string.vote_everage, String.valueOf(poster.getVoteEverage())));
         description.setText(poster.getOverview());
+        managePosterDate();
         Picasso.with(this).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
+    }
+
+    private void managePosterDate() {
+        try {
+            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = parser.parse(poster.getReleaseDate());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            year.setText(String.valueOf(calendar.get(Calendar.YEAR)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -89,7 +102,7 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     }
 
     @OnClick(R.id.detail_favorite)
-    void onAddToFavoriteClick(){
+    void onAddToFavoriteClick() {
         //TODO
     }
 }
