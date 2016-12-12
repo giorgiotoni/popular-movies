@@ -19,6 +19,7 @@ public class PopularMoviesApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Shank.registerFactory(Context.class, () -> this);
         Shank.registerFactory(Api.class, () -> new RestClient().api());
 
         Shank.registerFactory(NetworkService.class, () -> new NetworkService(this));

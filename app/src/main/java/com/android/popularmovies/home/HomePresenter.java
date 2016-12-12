@@ -1,7 +1,9 @@
 package com.android.popularmovies.home;
 
-import com.android.popularmovies.BuildConfig;
+import android.content.Context;
+
 import com.android.popularmovies.NetworkService;
+import com.android.popularmovies.R;
 import com.android.popularmovies.api.Api;
 import com.android.popularmovies.common.presenter.Presenter;
 import com.android.popularmovies.common.presenter.PresenterView;
@@ -23,6 +25,7 @@ import rx.schedulers.Schedulers;
 
 public class HomePresenter implements Presenter<HomePresenter.View> {
 
+    private Context applicationContext = Shank.provideNew(Context.class);
     private NetworkService networkService = Shank.provideSingleton(NetworkService.class);
     private Api apiClient = Shank.provideNew(Api.class);
     private View view;
@@ -70,7 +73,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     }
 
     private Observable<Posters> fetchPopularMoviesList() {
-        return apiClient.rxPopularMovies(BuildConfig.SERVER_KEY).subscribeOn(Schedulers.newThread())
+        return apiClient.rxPopularMovies(applicationContext.getString(R.string.api_key)).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
