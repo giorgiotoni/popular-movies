@@ -1,9 +1,6 @@
 package com.android.popularmovies.api;
 
-import com.android.popularmovies.model.Poster;
 import com.android.popularmovies.model.Posters;
-
-import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -19,5 +16,5 @@ public interface Api {
     Observable<Posters> rxPopularMovies(@Query("api_key") String serverKey);
 
     @GET("3/movie/top_rated")
-    Observable<List<Poster>> rxTopRatedMovies(@Query("api_key") String serverKey);
+    Observable<Posters> rxTopRatedMovies(@Query("api_key") String serverKey);
 }
