@@ -2,7 +2,7 @@ package com.android.popularmovies.home;
 
 import android.content.Context;
 
-import com.android.popularmovies.NetworkService;
+import com.android.popularmovies.services.NetworkService;
 import com.android.popularmovies.R;
 import com.android.popularmovies.api.Api;
 import com.android.popularmovies.common.presenter.Presenter;
@@ -28,7 +28,7 @@ import static com.android.popularmovies.home.NavView.MOST_POPULAR;
 
 public class HomePresenter implements Presenter<HomePresenter.View> {
 
-    private Context applicationContext = Shank.provideNew(Context.class);
+    private Context applicationContext = Shank.provideSingleton(Context.class);
     private NetworkService networkService = Shank.provideSingleton(NetworkService.class);
     private Api apiClient = Shank.provideNew(Api.class);
     private View view;

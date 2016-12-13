@@ -30,6 +30,7 @@ import butterknife.OnClick;
 public class DetailActivity extends BaseActivity implements DetailPresenter.View {
 
     DetailPresenter presenter = Shank.provideSingleton(DetailPresenter.class);
+
     private Poster poster;
 
     @BindView(R.id.detail_title)

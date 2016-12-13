@@ -7,6 +7,7 @@ import com.android.popularmovies.api.Api;
 import com.android.popularmovies.api.RestClient;
 import com.android.popularmovies.detail.DetailPresenter;
 import com.android.popularmovies.home.HomePresenter;
+import com.android.popularmovies.services.NetworkService;
 import com.memoizrlabs.Shank;
 
 /**
