@@ -20,6 +20,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.android.popularmovies.home.NavView.MOST_POPULAR;
+
 /**
  * Created by Giorgio on 27/11/16.
  */
@@ -31,6 +33,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     private Api apiClient = Shank.provideNew(Api.class);
     private View view;
     private Subscription subscription;
+    private NavView navView = MOST_POPULAR;
 
     private List<Poster> mostPopularInCache = new ArrayList<>();
     private List<Poster> topRatedInCache = new ArrayList<>();
@@ -38,13 +41,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     @Override
     public void attach(View view) {
         this.view = view;
-
-        //TODO check which page is displayed
-        if (mostPopularInCache.isEmpty()) {
-            loadPopularMovies();
-        } else {
-            view.showMoviePosters(mostPopularInCache);
-        }
+        goToNavView(navView);
     }
 
     @Override
@@ -57,6 +54,35 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     @Override
     public void destroy() {
 
+    }
+
+    public void goToNavView(NavView view) {
+        this.navView = view;
+        switch (view) {
+            case MOST_POPULAR:
+            default:
+                showMostPopularView();
+                break;
+            case TOP_RATED:
+                showTopRatedView();
+                break;
+        }
+    }
+
+    private void showMostPopularView() {
+        if (mostPopularInCache.isEmpty()) {
+            loadPopularMovies();
+        } else {
+            view.showMoviePosters(mostPopularInCache);
+        }
+    }
+
+    private void showTopRatedView() {
+        if (topRatedInCache.isEmpty()) {
+            loadTopRatedMovies();
+        } else {
+            view.showMoviePosters(topRatedInCache);
+        }
     }
 
     private void loadPopularMovies() {
@@ -127,8 +153,15 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     }
 
     void refreshContent() {
-        //TODO check which page is displayed
-        loadPopularMovies();
+        switch (navView) {
+            case MOST_POPULAR:
+            default:
+                loadPopularMovies();
+                break;
+            case TOP_RATED:
+                loadTopRatedMovies();
+                break;
+        }
     }
 
     public interface View extends PresenterView {

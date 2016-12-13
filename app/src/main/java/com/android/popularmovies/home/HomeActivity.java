@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.popularmovies.R;
@@ -60,10 +61,19 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                //TODO
+            case R.id.action_most_popular:
+                homePresenter.goToNavView(NavView.MOST_POPULAR);
+                return true;
+            case R.id.action_top_rated:
+                homePresenter.goToNavView(NavView.TOP_RATED);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
