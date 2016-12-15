@@ -10,28 +10,27 @@ import com.memoizrlabs.Shank;
 
 import java.lang.reflect.Type;
 
-import static android.media.tv.TvContract.Programs.Genres.MOVIES;
-
 /**
  * Created by Giorgio on 13/12/16.
  */
 
 public class PreferenceService {
 
+    public static final String FAVORITE_MOVIES = "popular_movies_favourite";
     private final Context context;
 
     public PreferenceService() {
         this.context = Shank.provideSingleton(Context.class);
     }
 
-    protected  <T> void save(T t, String key) {
+    public <T> void save(T t, String key) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        pref.edit().putString(MOVIES, new Gson().toJson(t)).apply();
+        pref.edit().putString(key, new Gson().toJson(t)).apply();
     }
 
-    protected  <T> T get(Type clazz, String key) {
+    public <T> T get(Type clazz, String key) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        String json = pref.getString(MOVIES, null);
+        String json = pref.getString(key, null);
         if (json == null) {
             return null;
         }

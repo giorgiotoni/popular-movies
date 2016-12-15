@@ -10,6 +10,7 @@ import com.android.popularmovies.common.presenter.PresenterView;
 import com.android.popularmovies.common.rx.EnhancedObserver;
 import com.android.popularmovies.model.Poster;
 import com.android.popularmovies.model.Posters;
+import com.android.popularmovies.services.PreferenceService;
 import com.memoizrlabs.Shank;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
 
     private Context applicationContext = Shank.provideSingleton(Context.class);
     private NetworkService networkService = Shank.provideSingleton(NetworkService.class);
+    private PreferenceService preferences = Shank.provideSingleton(PreferenceService.class);
     private Api apiClient = Shank.provideNew(Api.class);
     private View view;
     private Subscription subscription;
@@ -66,6 +68,9 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
             case TOP_RATED:
                 showTopRatedView();
                 break;
+            case FAVORITE:
+                showFavoriteView();
+                break;
         }
     }
 
@@ -83,6 +88,10 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
         } else {
             view.showMoviePosters(topRatedInCache);
         }
+    }
+
+    private void showFavoriteView() {
+        view.showMoviePosters(preferences.get(Poster.class, PreferenceService.FAVORITE_MOVIES));
     }
 
     private void loadPopularMovies() {
@@ -160,6 +169,9 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
                 break;
             case TOP_RATED:
                 loadTopRatedMovies();
+                break;
+            case FAVORITE:
+                showFavoriteView();
                 break;
         }
     }

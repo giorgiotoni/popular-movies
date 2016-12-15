@@ -8,6 +8,7 @@ import com.android.popularmovies.api.RestClient;
 import com.android.popularmovies.detail.DetailPresenter;
 import com.android.popularmovies.home.HomePresenter;
 import com.android.popularmovies.services.NetworkService;
+import com.android.popularmovies.services.PreferenceService;
 import com.memoizrlabs.Shank;
 
 /**
@@ -24,6 +25,7 @@ public class PopularMoviesApplication extends Application {
         Shank.registerFactory(Api.class, () -> new RestClient().api());
 
         Shank.registerFactory(NetworkService.class, () -> new NetworkService(this));
+        Shank.registerFactory(PreferenceService.class, PreferenceService::new);
 
         Shank.registerFactory(HomePresenter.class, HomePresenter::new);
         Shank.registerFactory(DetailPresenter.class, DetailPresenter::new);

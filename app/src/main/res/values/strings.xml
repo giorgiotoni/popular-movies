@@ -7,4 +7,5 @@
     <string name="vote_everage">%s/10</string>
     <string name="action_most_popular">Most Popular</string>
     <string name="action_top_rated">Top Rated</string>
+    <string name="favorite">Favorite</string>
 </resources>

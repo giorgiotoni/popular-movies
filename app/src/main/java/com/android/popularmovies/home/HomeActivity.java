@@ -75,6 +75,9 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
             case R.id.action_top_rated:
                 homePresenter.goToNavView(NavView.TOP_RATED);
                 return true;
+            case R.id.action_favorite:
+                homePresenter.goToNavView(NavView.FAVORITE);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

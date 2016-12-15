@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,9 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     @BindView(R.id.detail_description)
     TextView description;
 
+    @BindView(R.id.detail_favorite)
+    Button addToFavorite;
+
     public static void start(Context context, Poster poster) {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(Poster.class.getSimpleName(), poster);
@@ -68,11 +72,21 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
         title.setText(poster.getTitle());
         vote.setText(getString(R.string.vote_everage, String.valueOf(poster.getVoteEverage())));
         description.setText(poster.getOverview());
-        managePosterDate();
+        manageFavoriteButton();
+        manageMovieDate();
         Picasso.with(this).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
     }
 
-    private void managePosterDate() {
+    private void manageFavoriteButton(){
+        if(presenter.isFavorite(poster)){
+            addToFavorite.setText(getString(R.string.favorite));
+            addToFavorite.setEnabled(false);
+        }else{
+            addToFavorite.setText(getString(R.string.mark_as_favorite));
+        }
+    }
+
+    private void manageMovieDate() {
         try {
             SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
             Date date = parser.parse(poster.getReleaseDate());
@@ -104,6 +118,11 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
 
     @OnClick(R.id.detail_favorite)
     void onAddToFavoriteClick() {
-        //TODO
+        presenter.addFavoriteMovie(poster);
+    }
+
+    @Override
+    public void showMovieAddedToFavorite() {
+        manageFavoriteButton();
     }
 }

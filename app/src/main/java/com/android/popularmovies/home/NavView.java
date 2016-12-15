@@ -5,5 +5,5 @@ package com.android.popularmovies.home;
  */
 
 enum NavView {
-    MOST_POPULAR, TOP_RATED
+    MOST_POPULAR, TOP_RATED, FAVORITE
 }
