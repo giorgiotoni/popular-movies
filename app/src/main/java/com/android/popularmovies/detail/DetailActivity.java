@@ -77,11 +77,10 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
         Picasso.with(this).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
     }
 
-    private void manageFavoriteButton(){
-        if(presenter.isFavorite(poster)){
-            addToFavorite.setText(getString(R.string.favorite));
-            addToFavorite.setEnabled(false);
-        }else{
+    private void manageFavoriteButton() {
+        if (presenter.isFavorite(poster)) {
+            addToFavorite.setText(getString(R.string.remove_from_favorite));
+        } else {
             addToFavorite.setText(getString(R.string.mark_as_favorite));
         }
     }
@@ -117,12 +116,12 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     }
 
     @OnClick(R.id.detail_favorite)
-    void onAddToFavoriteClick() {
-        presenter.addFavoriteMovie(poster);
+    void onFavoriteButtonClick() {
+        presenter.addOrRemoveFavoriteMovie(poster);
     }
 
     @Override
-    public void showMovieAddedToFavorite() {
+    public void updateFavoriteButtonStatus() {
         manageFavoriteButton();
     }
 }

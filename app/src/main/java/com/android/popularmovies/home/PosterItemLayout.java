@@ -58,11 +58,14 @@ public class PosterItemLayout extends FrameLayout implements RecyclerItem<Poster
     @Override
     public void update(Poster poster) {
         this.poster = poster;
-        Picasso.with(getContext()).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
+        Picasso.with(getContext())
+                .load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl())
+                .placeholder(R.drawable.poster_placeholder)
+                .into(posterImage);
     }
 
     @OnClick(R.id.poster_item_overlay)
-    void onPosterClick(){
+    void onPosterClick() {
         DetailActivity.start(getContext(), poster);
     }
 }

@@ -1,6 +1,7 @@
 package com.android.popularmovies.home;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -84,7 +85,7 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
     }
 
     @Override
-    public void showMoviePosters(List<Poster> posters) {
+    public void showMoviePosters(@NonNull List<Poster> posters) {
         HomeViewAdapter adapter = new HomeViewAdapter();
         adapter.setItems(posters);
         recyclerView.setAdapter(adapter);
@@ -103,5 +104,20 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
     @Override
     public void hideRefreshLayout() {
         refreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showNoFavoriteMoviesFoundMessage() {
+        showMessage(R.string.error_no_favorite_movies);
+    }
+
+    @Override
+    public void enableRefreshLayout() {
+        refreshLayout.setEnabled(true);
+    }
+
+    @Override
+    public void disableRefreshLayout() {
+        refreshLayout.setEnabled(false);
     }
 }

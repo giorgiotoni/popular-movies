@@ -80,6 +80,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
         } else {
             view.showMoviePosters(mostPopularInCache);
         }
+        view.enableRefreshLayout();
     }
 
     private void showTopRatedView() {
@@ -88,10 +89,19 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
         } else {
             view.showMoviePosters(topRatedInCache);
         }
+        view.enableRefreshLayout();
     }
 
     private void showFavoriteView() {
-        view.showMoviePosters(preferences.get(Poster.class, PreferenceService.FAVORITE_MOVIES));
+        view.disableRefreshLayout();
+        Posters posters = preferences.get(Posters.class, PreferenceService.FAVORITE_MOVIES);
+        if (posters != null && !posters.getPostersList().isEmpty()) {
+            List<Poster> p = posters.getPostersList();
+            view.showMoviePosters(p);
+            return;
+        }
+        view.showNoFavoriteMoviesFoundMessage();
+        goToNavView(MOST_POPULAR);
     }
 
     private void loadPopularMovies() {
@@ -185,6 +195,12 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
         void showNetworkError();
 
         void hideRefreshLayout();
+
+        void showNoFavoriteMoviesFoundMessage();
+
+        void enableRefreshLayout();
+
+        void disableRefreshLayout();
     }
 }
 
