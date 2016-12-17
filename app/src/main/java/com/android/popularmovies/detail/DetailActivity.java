@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,10 +32,6 @@ import butterknife.OnClick;
 
 public class DetailActivity extends BaseActivity implements DetailPresenter.View {
 
-    DetailPresenter presenter = Shank.provideSingleton(DetailPresenter.class);
-
-    private Poster poster;
-
     @BindView(R.id.detail_title)
     TextView title;
 
@@ -52,6 +50,12 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     @BindView(R.id.detail_favorite)
     Button addToFavorite;
 
+    @BindView(R.id.detail_view_pager)
+    ViewPager viewPager;
+
+    private DetailPresenter presenter = Shank.provideSingleton(DetailPresenter.class);
+    private Poster poster;
+
     public static void start(Context context, Poster poster) {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(Poster.class.getSimpleName(), poster);
@@ -69,12 +73,17 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     }
 
     private void initUI() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         title.setText(poster.getTitle());
         vote.setText(getString(R.string.vote_everage, String.valueOf(poster.getVoteEverage())));
         description.setText(poster.getOverview());
         manageFavoriteButton();
         manageMovieDate();
         Picasso.with(this).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
+
+        viewPager.setAdapter(new DetailAdapter(getSupportFragmentManager(), String.valueOf(poster.getId().longValue())));
     }
 
     private void manageFavoriteButton() {
@@ -113,6 +122,16 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     protected void onDestroy() {
         super.onDestroy();
         presenter.destroy();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.detail_favorite)

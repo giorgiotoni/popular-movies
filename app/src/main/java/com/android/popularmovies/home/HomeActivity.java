@@ -21,13 +21,13 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
-    HomePresenter homePresenter = Shank.provideSingleton(HomePresenter.class);
-
     @BindView(R.id.home_recycler)
     RecyclerView recyclerView;
 
     @BindView(R.id.home_refresh_layout)
     SwipeRefreshLayout refreshLayout;
+
+    private HomePresenter homePresenter = Shank.provideSingleton(HomePresenter.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

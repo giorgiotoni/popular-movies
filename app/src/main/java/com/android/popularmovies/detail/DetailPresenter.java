@@ -59,7 +59,7 @@ public class DetailPresenter implements Presenter<DetailPresenter.View> {
 
     public boolean isFavorite(Poster poster) {
         Posters posters = preferences.get(Posters.class, PreferenceService.FAVORITE_MOVIES);
-        if (posters != null && !posters.getPostersList().isEmpty()) {
+        if (posters != null && posters.getPostersList() != null && !posters.getPostersList().isEmpty()) {
             for (Poster p : posters.getPostersList()) {
                 if (p.getId().equals(poster.getId())) {
                     return true;
