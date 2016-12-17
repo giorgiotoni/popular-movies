@@ -24,7 +24,7 @@ public class PopularMoviesApplication extends Application {
         Shank.registerFactory(Context.class, () -> this);
         Shank.registerFactory(Api.class, () -> new RestClient().api());
 
-        Shank.registerFactory(NetworkService.class, () -> new NetworkService(this));
+        Shank.registerFactory(NetworkService.class, NetworkService::new);
         Shank.registerFactory(PreferenceService.class, PreferenceService::new);
 
         Shank.registerFactory(HomePresenter.class, HomePresenter::new);

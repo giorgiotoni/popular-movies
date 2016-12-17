@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.memoizrlabs.Shank;
+
 /**
  * Created by Giorgio on 06/12/16.
  */
@@ -12,8 +14,8 @@ public class NetworkService {
 
     Context context;
 
-    public NetworkService(Context applicationContext) {
-        this.context = applicationContext;
+    public NetworkService() {
+        this.context = Shank.provideSingleton(Context.class);
     }
 
     public boolean isOnline() {
