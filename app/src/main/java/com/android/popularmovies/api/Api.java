@@ -1,6 +1,7 @@
 package com.android.popularmovies.api;
 
 import com.android.popularmovies.model.Posters;
+import com.android.popularmovies.model.Reviews;
 import com.android.popularmovies.model.Trailers;
 
 import retrofit2.http.GET;
@@ -20,9 +21,9 @@ public interface Api {
     @GET("3/movie/top_rated")
     Observable<Posters> rxTopRatedMovies(@Query("api_key") String serverKey);
 
-    @GET("/movie/{id}/videos")
+    @GET("3/movie/{id}/videos")
     Observable<Trailers> rxMovieTrailers(@Path("id") String id, @Query("api_key") String serverKey);
 
-    @GET("/movie/{id}/reviews")
-    Observable<Trailers> rxMovieReviews(@Path("id") String id, @Query("api_key") String serverKey);
+    @GET("3/movie/{id}/reviews")
+    Observable<Reviews> rxMovieReviews(@Path("id") String id, @Query("api_key") String serverKey);
 }

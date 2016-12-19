@@ -25,7 +25,7 @@ public class DetailAdapter extends FragmentStatePagerAdapter {
         if (position == 0) {
             return TrailerFragment.getInstance(movieId);
         }
-        return new ReviewFragment();
+        return ReviewFragment.getInstance(movieId);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.android.popularmovies.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -8,7 +10,8 @@ import java.util.List;
 
 public class Trailers {
 
-    List<Trailer> trailers;
+    @SerializedName("results")
+    private List<Trailer> trailers;
 
     public List<Trailer> getTrailers() {
         return trailers;

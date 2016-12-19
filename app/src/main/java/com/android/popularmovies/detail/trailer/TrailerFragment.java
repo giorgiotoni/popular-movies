@@ -55,6 +55,7 @@ public class TrailerFragment extends Fragment implements TrailerPresenter.View {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
         presenter.loadMovieTrailers(movieId);
     }
 

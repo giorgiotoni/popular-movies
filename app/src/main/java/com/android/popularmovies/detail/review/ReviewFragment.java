@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.popularmovies.R;
+import com.android.popularmovies.detail.trailer.TrailerFragment;
 import com.android.popularmovies.model.Review;
 import com.memoizrlabs.Shank;
 
@@ -30,6 +31,17 @@ public class ReviewFragment extends Fragment implements ReviewPresenter.View {
 
     private ReviewPresenter presenter = Shank.provideSingleton(ReviewPresenter.class);
     private Unbinder unbinder;
+    private String movieId;
+
+    public static ReviewFragment getInstance(String movieId) {
+        ReviewFragment rf = new ReviewFragment();
+        rf.setMovieId(movieId);
+        return rf;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
 
     @Nullable
     @Override
@@ -44,6 +56,8 @@ public class ReviewFragment extends Fragment implements ReviewPresenter.View {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
+        presenter.loadMovieReviews(movieId);
     }
 
     @Override
@@ -70,5 +84,15 @@ public class ReviewFragment extends Fragment implements ReviewPresenter.View {
         ReviewViewAdapter adapter = new ReviewViewAdapter();
         adapter.setItems(reviews);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showNetworkError() {
+        //TODO
+    }
+
+    @Override
+    public void showMovieReviewsLoadingError() {
+        //TODO
     }
 }

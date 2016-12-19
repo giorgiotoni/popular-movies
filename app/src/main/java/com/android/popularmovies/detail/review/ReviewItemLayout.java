@@ -5,12 +5,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.android.popularmovies.R;
 import com.android.popularmovies.common.presenter.RecyclerItem;
-import com.android.popularmovies.home.PosterItemLayout;
 import com.android.popularmovies.model.Review;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -18,6 +19,11 @@ import butterknife.ButterKnife;
  */
 
 public class ReviewItemLayout extends RelativeLayout implements RecyclerItem<Review> {
+
+    @BindView(R.id.review_text)
+    TextView reviewContent;
+
+    private Review review;
 
     public ReviewItemLayout(Context context) {
         super(context);
@@ -35,8 +41,8 @@ public class ReviewItemLayout extends RelativeLayout implements RecyclerItem<Rev
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public static PosterItemLayout inflate(ViewGroup viewGroup) {
-        return (PosterItemLayout) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_review_item, viewGroup, false);
+    public static ReviewItemLayout inflate(ViewGroup viewGroup) {
+        return (ReviewItemLayout) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_review_item, viewGroup, false);
     }
 
     @Override
@@ -47,6 +53,7 @@ public class ReviewItemLayout extends RelativeLayout implements RecyclerItem<Rev
 
     @Override
     public void update(Review review) {
-
+        this.review = review;
+        reviewContent.setText(review.getContent());
     }
 }
