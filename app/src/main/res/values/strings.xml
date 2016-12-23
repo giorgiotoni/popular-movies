@@ -10,4 +10,6 @@
     <string name="favorite">Favorite</string>
     <string name="error_no_favorite_movies">No favorite movies found</string>
     <string name="remove_from_favorite">Remove from favorite</string>
+    <string name="tab_trailers_fragment">trailers</string>
+    <string name="tab_reviews_fragment">reviews</string>
 </resources>

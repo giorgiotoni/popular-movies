@@ -1,5 +1,17 @@
 <resources>
 
-
-
+    <style name="TabLayout"
+           parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimaryInverse</item>
+    </style>
+    <style name="TabTextAppearance"
+           parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorSecondaryInverse</item>
+        <item name="textAllCaps">true</item>
+    </style>
 </resources>

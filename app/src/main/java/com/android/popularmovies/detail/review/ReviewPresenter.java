@@ -12,6 +12,7 @@ import com.android.popularmovies.model.Reviews;
 import com.android.popularmovies.services.NetworkService;
 import com.memoizrlabs.Shank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -30,10 +31,14 @@ public class ReviewPresenter implements Presenter<ReviewPresenter.View> {
     private NetworkService networkService = Shank.provideSingleton(NetworkService.class);
     private Api apiClient = Shank.provideNew(Api.class);
     private Subscription subscription;
+    private List<Review> reviewsInCache = new ArrayList<>();
 
     @Override
     public void attach(View view) {
         this.view = view;
+        if (!reviewsInCache.isEmpty()) {
+            view.showReviews(reviewsInCache);
+        }
     }
 
     @Override
@@ -45,7 +50,7 @@ public class ReviewPresenter implements Presenter<ReviewPresenter.View> {
 
     @Override
     public void destroy() {
-
+        reviewsInCache.clear();
     }
 
     public void loadMovieReviews(String movieId) {
@@ -57,7 +62,8 @@ public class ReviewPresenter implements Presenter<ReviewPresenter.View> {
             @Override
             public void next(Reviews reviews) {
                 if (reviews.getReviews() != null && !reviews.getReviews().isEmpty()) {
-                    view.showReviews(reviews.getReviews());
+                    reviewsInCache.addAll(reviews.getReviews());
+                    view.showReviews(reviewsInCache);
                 } else {
                     view.showMovieReviewsLoadingError();
                 }

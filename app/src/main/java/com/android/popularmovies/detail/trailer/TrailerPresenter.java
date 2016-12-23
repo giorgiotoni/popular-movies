@@ -12,6 +12,7 @@ import com.android.popularmovies.model.Trailers;
 import com.android.popularmovies.services.NetworkService;
 import com.memoizrlabs.Shank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -30,10 +31,14 @@ public class TrailerPresenter implements Presenter<TrailerPresenter.View> {
     private Api apiClient = Shank.provideNew(Api.class);
     private View view;
     private Subscription subscription;
+    private List<Trailer> trailersInCache = new ArrayList<>();
 
     @Override
     public void attach(View view) {
         this.view = view;
+        if (!trailersInCache.isEmpty()) {
+            view.showTrailers(trailersInCache);
+        }
     }
 
     @Override
@@ -45,7 +50,7 @@ public class TrailerPresenter implements Presenter<TrailerPresenter.View> {
 
     @Override
     public void destroy() {
-
+        trailersInCache.clear();
     }
 
     public void loadMovieTrailers(String movieId) {
@@ -57,7 +62,8 @@ public class TrailerPresenter implements Presenter<TrailerPresenter.View> {
             @Override
             public void next(Trailers trailers) {
                 if (trailers.getTrailers() != null && !trailers.getTrailers().isEmpty()) {
-                    view.showTrailers(trailers.getTrailers());
+                    trailersInCache.addAll(trailers.getTrailers());
+                    view.showTrailers(trailersInCache);
                 } else {
                     view.showMovieTrailersLoadingError();
                 }
@@ -77,6 +83,7 @@ public class TrailerPresenter implements Presenter<TrailerPresenter.View> {
     }
 
     public interface View extends PresenterView {
+
         void showTrailers(List<Trailer> trailers);
 
         void showNetworkError();

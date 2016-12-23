@@ -28,6 +28,7 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
     SwipeRefreshLayout refreshLayout;
 
     private HomePresenter homePresenter = Shank.provideSingleton(HomePresenter.class);
+    private HomeViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,9 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
     @Override
     public void showMoviePosters(@NonNull List<Poster> posters) {
-        HomeViewAdapter adapter = new HomeViewAdapter();
+        if (adapter == null) {
+            adapter = new HomeViewAdapter();
+        }
         adapter.setItems(posters);
         recyclerView.setAdapter(adapter);
     }

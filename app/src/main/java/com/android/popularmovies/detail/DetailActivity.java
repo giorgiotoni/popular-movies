@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -50,6 +51,9 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     @BindView(R.id.detail_favorite)
     Button addToFavorite;
 
+    @BindView(R.id.detail_view_pager_tabs)
+    TabLayout tabs;
+
     @BindView(R.id.detail_view_pager)
     ViewPager viewPager;
 
@@ -83,7 +87,9 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
         manageMovieDate();
         Picasso.with(this).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
 
-        viewPager.setAdapter(new DetailAdapter(getSupportFragmentManager(), String.valueOf(poster.getId().longValue())));
+        viewPager.setAdapter(new DetailAdapter(this, String.valueOf(poster.getId().longValue())));
+        tabs.setupWithViewPager(viewPager);
+        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 
     private void manageFavoriteButton() {
