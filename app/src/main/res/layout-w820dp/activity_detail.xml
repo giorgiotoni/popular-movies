@@ -4,9 +4,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <include android:id="@+id/toolbar"
+             layout="@layout/toolbar"/>
+
     <FrameLayout android:id="@+id/detail_title_container"
                  android:layout_width="match_parent"
                  android:layout_height="120dp"
+                 android:layout_below="@id/toolbar"
                  android:background="@color/colorAccent"
                  android:elevation="4dp">
         <TextView android:id="@+id/detail_title"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -77,8 +78,11 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
     }
 
     private void initUI() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
 
         title.setText(poster.getTitle());
         vote.setText(getString(R.string.vote_everage, String.valueOf(poster.getVoteEverage())));

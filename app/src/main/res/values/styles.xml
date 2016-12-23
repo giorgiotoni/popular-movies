@@ -6,12 +6,12 @@
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabTextAppearance">@style/TabTextAppearance</item>
-        <item name="tabSelectedTextColor">?android:textColorPrimaryInverse</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
     </style>
     <style name="TabTextAppearance"
            parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">?android:textColorSecondaryInverse</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
     </style>
 </resources>
