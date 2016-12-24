@@ -6,8 +6,6 @@ import android.content.Context;
 import com.android.popularmovies.api.Api;
 import com.android.popularmovies.api.RestClient;
 import com.android.popularmovies.detail.DetailPresenter;
-import com.android.popularmovies.detail.review.ReviewPresenter;
-import com.android.popularmovies.detail.trailer.TrailerPresenter;
 import com.android.popularmovies.home.HomePresenter;
 import com.android.popularmovies.services.NetworkService;
 import com.android.popularmovies.services.PreferenceService;
@@ -31,7 +29,5 @@ public class PopularMoviesApplication extends Application {
 
         Shank.registerFactory(HomePresenter.class, HomePresenter::new);
         Shank.registerFactory(DetailPresenter.class, DetailPresenter::new);
-        Shank.registerFactory(TrailerPresenter.class, TrailerPresenter::new);
-        Shank.registerFactory(ReviewPresenter.class, ReviewPresenter::new);
     }
 }

@@ -70,7 +70,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
                 showTopRatedView();
                 break;
             case FAVORITE:
-                showFavoriteView();
+                //TODO
                 break;
         }
     }
@@ -94,15 +94,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
     }
 
     private void showFavoriteView() {
-        view.disableRefreshLayout();
-        Posters posters = preferences.get(Posters.class, PreferenceService.FAVORITE_MOVIES);
-        if (posters != null && !posters.getPostersList().isEmpty()) {
-            List<Poster> p = posters.getPostersList();
-            view.showMoviePosters(p);
-            return;
-        }
-        view.showNoFavoriteMoviesFoundMessage();
-        goToNavView(MOST_POPULAR);
+        //TODO
     }
 
     private void loadPopularMovies() {
@@ -182,7 +174,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
                 loadTopRatedMovies();
                 break;
             case FAVORITE:
-                showFavoriteView();
+                //TODO
                 break;
         }
     }

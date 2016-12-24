@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -26,7 +24,6 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Giorgio on 05/12/16.
@@ -51,12 +48,6 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
 
     @BindView(R.id.detail_favorite)
     Button addToFavorite;
-
-    @BindView(R.id.detail_view_pager_tabs)
-    TabLayout tabs;
-
-    @BindView(R.id.detail_view_pager)
-    ViewPager viewPager;
 
     private DetailPresenter presenter = Shank.provideSingleton(DetailPresenter.class);
     private Poster poster;
@@ -87,21 +78,8 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
         title.setText(poster.getTitle());
         vote.setText(getString(R.string.vote_everage, String.valueOf(poster.getVoteEverage())));
         description.setText(poster.getOverview());
-        manageFavoriteButton();
         manageMovieDate();
         Picasso.with(this).load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl()).into(posterImage);
-
-        viewPager.setAdapter(new DetailAdapter(this, String.valueOf(poster.getId().longValue())));
-        tabs.setupWithViewPager(viewPager);
-        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
-    }
-
-    private void manageFavoriteButton() {
-        if (presenter.isFavorite(poster)) {
-            addToFavorite.setText(getString(R.string.remove_from_favorite));
-        } else {
-            addToFavorite.setText(getString(R.string.mark_as_favorite));
-        }
     }
 
     private void manageMovieDate() {
@@ -142,15 +120,5 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @OnClick(R.id.detail_favorite)
-    void onFavoriteButtonClick() {
-        presenter.addOrRemoveFavoriteMovie(poster);
-    }
-
-    @Override
-    public void updateFavoriteButtonStatus() {
-        manageFavoriteButton();
     }
 }
