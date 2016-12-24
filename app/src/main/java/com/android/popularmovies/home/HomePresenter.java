@@ -39,6 +39,7 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
 
     private List<Poster> mostPopularInCache = new ArrayList<>();
     private List<Poster> topRatedInCache = new ArrayList<>();
+    private int recyclerScrollPosition;
 
     @Override
     public void attach(View view) {
@@ -184,6 +185,14 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
                 showFavoriteView();
                 break;
         }
+    }
+
+    public void setRecyclerScrollPosition(int recyclerScrollPosition) {
+        this.recyclerScrollPosition = recyclerScrollPosition;
+    }
+
+    public int getRecyclerScrollPosition() {
+        return recyclerScrollPosition;
     }
 
     public interface View extends PresenterView {

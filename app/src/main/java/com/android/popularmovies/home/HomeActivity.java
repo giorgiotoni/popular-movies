@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,11 +49,14 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
     protected void onResume() {
         super.onResume();
         homePresenter.attach(this);
+        recyclerView.getLayoutManager().scrollToPosition(homePresenter.getRecyclerScrollPosition());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        int currentVisiblePosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+        homePresenter.setRecyclerScrollPosition(currentVisiblePosition);
         homePresenter.detach();
     }
 

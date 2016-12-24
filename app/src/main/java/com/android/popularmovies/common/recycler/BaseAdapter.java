@@ -34,10 +34,11 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T> extends
         if (items != null) {
             this.items.clear();
             this.items.addAll(items);
+            notifyItemRangeChanged(0, items.size());
         } else {
             this.items.clear();
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
     }
 
     public T getItem(int position) {
