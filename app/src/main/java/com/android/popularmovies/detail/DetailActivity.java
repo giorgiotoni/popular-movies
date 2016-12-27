@@ -73,7 +73,7 @@ public class DetailActivity extends BaseActivity implements DetailPresenter.View
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
 
-        poster = (Poster) getIntent().getSerializableExtra(Poster.class.getSimpleName());
+        poster = getIntent().getParcelableExtra(Poster.class.getSimpleName());
         initUI();
     }
 
