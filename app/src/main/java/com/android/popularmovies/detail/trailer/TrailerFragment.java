@@ -74,8 +74,10 @@ public class TrailerFragment extends Fragment implements TrailerPresenter.View {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.destroy();
         unbinder.unbind();
+        if (getActivity().isFinishing()) {
+            presenter.destroy();
+        }
     }
 
     @Override

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- pressed -->
+    <item android:state_pressed="true">
+        <inset android:insetBottom="@dimen/button_inset_vertical_material"
+               android:insetLeft="@dimen/button_inset_horizontal_material"
+               android:insetRight="@dimen/button_inset_horizontal_material"
+               android:insetTop="@dimen/button_inset_vertical_material">
+            <shape android:shape="rectangle">
+                <corners android:radius="@dimen/control_corner_material"/>
+                <solid android:color="@color/colorAccentDark"/>
+                <padding android:bottom="@dimen/button_padding_vertical_material"
+                         android:left="@dimen/button_padding_horizontal_material"
+                         android:right="@dimen/button_padding_horizontal_material"
+                         android:top="@dimen/button_padding_vertical_material"/>
+            </shape>
+        </inset>
+    </item>
+
+    <!-- normal -->
+    <item>
+        <inset android:insetBottom="@dimen/button_inset_vertical_material"
+               android:insetLeft="@dimen/button_inset_horizontal_material"
+               android:insetRight="@dimen/button_inset_horizontal_material"
+               android:insetTop="@dimen/button_inset_vertical_material">
+            <shape android:shape="rectangle">
+                <corners android:radius="@dimen/control_corner_material"/>
+                <solid android:color="@color/colorAccent"/>
+                <padding android:bottom="@dimen/button_padding_vertical_material"
+                         android:left="@dimen/button_padding_horizontal_material"
+                         android:right="@dimen/button_padding_horizontal_material"
+                         android:top="@dimen/button_padding_vertical_material"/>
+            </shape>
+        </inset>
+    </item>
+</selector>

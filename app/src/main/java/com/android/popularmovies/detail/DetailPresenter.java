@@ -52,6 +52,7 @@ public class DetailPresenter implements Presenter<DetailPresenter.View> {
 
     private void removeFavoriteMovie(Poster poster) {
         Posters posters = preferences.get(Posters.class, PreferenceService.FAVORITE_MOVIES);
+        posters.setPosters(posters.getPostersList());
         posters.remove(poster);
         preferences.save(posters, PreferenceService.FAVORITE_MOVIES);
         view.updateFavoriteButtonStatus();

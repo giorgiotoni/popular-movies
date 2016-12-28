@@ -61,6 +61,7 @@ public class PosterItemLayout extends FrameLayout implements RecyclerItem<Poster
         Picasso.with(getContext())
                 .load(BuildConfig.IMAGES_END_POINT + poster.getImageUrl())
                 .placeholder(R.drawable.poster_placeholder)
+                .error(R.drawable.poster_placeholder)
                 .into(posterImage);
     }
 

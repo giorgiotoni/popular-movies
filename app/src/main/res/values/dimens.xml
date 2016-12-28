@@ -4,5 +4,14 @@
     <dimen name="keyline_large">32dp</dimen>
     <dimen name="keyline_content">72dp</dimen>
 
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+
     <dimen name="poster_height">300dp</dimen>
+
+    <!-- button material -->
+    <dimen name="button_inset_vertical_material">6dp</dimen>
+    <dimen name="button_inset_horizontal_material">4dp</dimen>
+    <dimen name="button_padding_vertical_material">4dp</dimen>
+    <dimen name="button_padding_horizontal_material">8dp</dimen>
+    <dimen name="control_corner_material">2dp</dimen>
 </resources>

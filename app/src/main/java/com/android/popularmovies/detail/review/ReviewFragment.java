@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.popularmovies.R;
-import com.android.popularmovies.detail.trailer.TrailerFragment;
 import com.android.popularmovies.model.Review;
 import com.memoizrlabs.Shank;
 
@@ -75,8 +74,10 @@ public class ReviewFragment extends Fragment implements ReviewPresenter.View {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        presenter.destroy();
         unbinder.unbind();
+        if (getActivity().isFinishing()) {
+            presenter.destroy();
+        }
     }
 
     @Override
