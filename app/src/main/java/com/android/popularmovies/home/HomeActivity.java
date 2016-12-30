@@ -1,6 +1,7 @@
 package com.android.popularmovies.home;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +16,7 @@ import com.android.popularmovies.common.activity.BaseActivity;
 import com.android.popularmovies.model.Poster;
 import com.memoizrlabs.Shank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,6 +40,9 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
         ButterKnife.bind(this);
 
         initUI();
+        if (savedInstanceState != null && savedInstanceState.containsKey(Poster.class.getSimpleName())) {
+            showMoviePosters(savedInstanceState.getParcelableArrayList(Poster.class.getSimpleName()));
+        }
     }
 
     private void initUI() {
@@ -87,6 +92,14 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (homePresenter.getPosterCache() != null) {
+            outState.putParcelableArrayList(Poster.class.getSimpleName(), (ArrayList<? extends Parcelable>) homePresenter.getPosterCache());
+        }
+        super.onSaveInstanceState(outState);
     }
 
     @Override

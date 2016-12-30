@@ -55,7 +55,9 @@ public class ReviewPresenter implements Presenter<ReviewPresenter.View> {
 
     public void loadMovieReviews(String movieId) {
         if (!networkService.isOnline()) {
-            view.showNetworkError();
+            if (view != null) {
+                view.showNetworkError();
+            }
             return;
         }
         subscription = fetchMovieReviews(movieId).subscribe(new EnhancedObserver<Reviews>(subscription) {

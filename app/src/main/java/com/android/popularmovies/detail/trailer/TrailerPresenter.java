@@ -55,7 +55,9 @@ public class TrailerPresenter implements Presenter<TrailerPresenter.View> {
 
     public void loadMovieTrailers(String movieId) {
         if (!networkService.isOnline()) {
-            view.showNetworkError();
+            if (view != null) {
+                view.showNetworkError();
+            }
             return;
         }
         subscription = fetchMovieTrailers(movieId).subscribe(new EnhancedObserver<Trailers>(subscription) {

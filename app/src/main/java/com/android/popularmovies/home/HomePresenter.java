@@ -195,6 +195,16 @@ public class HomePresenter implements Presenter<HomePresenter.View> {
         return recyclerScrollPosition;
     }
 
+    public List<Poster> getPosterCache() {
+        switch (navView) {
+            case MOST_POPULAR:
+                return mostPopularInCache;
+            case TOP_RATED:
+                return topRatedInCache;
+        }
+        return null;
+    }
+
     public interface View extends PresenterView {
 
         void showMoviePosters(List<Poster> posters);
