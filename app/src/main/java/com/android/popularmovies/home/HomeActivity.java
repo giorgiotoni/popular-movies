@@ -40,7 +40,8 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
         ButterKnife.bind(this);
 
         initUI();
-        if (savedInstanceState != null && savedInstanceState.containsKey(Poster.class.getSimpleName())) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(Poster.class.getSimpleName()) && savedInstanceState
+                .getParcelableArrayList(Poster.class.getSimpleName()) != null) {
             showMoviePosters(savedInstanceState.getParcelableArrayList(Poster.class.getSimpleName()));
         }
     }
